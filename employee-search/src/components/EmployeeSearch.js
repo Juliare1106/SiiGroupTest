@@ -75,7 +75,7 @@ const EmployeeSearch = () => {
                     <div className="col-md-6 offset-md-3">
                         <div className="input-group">
                             <input
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 placeholder="Enter Employee ID"
                                 value={employeeId}
