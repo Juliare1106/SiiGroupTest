@@ -7,6 +7,7 @@ import logo from '../logo.svg'; // Brand image
 const EmployeeSearch = () => {
     const [employeeId, setEmployeeId] = useState("");
     const [employees, setEmployees] = useState([]);
+    const [error, setError] = useState(null); // Status for Error Handling
     const navigate = useNavigate(); // Navigation hook
 
     const handleSearch = () => {
@@ -21,10 +22,12 @@ const EmployeeSearch = () => {
                 const data = Array.isArray(response.data) ? response.data : [response.data];
                 console.log(response);
                 setEmployees(data);
+                setError(null); 
             })
             .catch(error => {
                 console.error("There was an error fetching the employee data!", error);
                 setEmployees([]);
+                setError("There was an error fetching the employee data!"); 
             });
     };
 
@@ -33,9 +36,13 @@ const EmployeeSearch = () => {
         handleSearch(); // Find all employees
     };
 
+    const formatCurrency = (value) => {
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
+    };
+
     return (
         <div>
-            {/* Navbar menu*/} 
+            {/* Navbar menu*/}
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <a className="navbar-brand" href="#">
                     <img src={logo} alt="Brand Logo" width="100" height="40" className="d-inline-block align-top" />
@@ -78,6 +85,12 @@ const EmployeeSearch = () => {
                     </div>
                 </div>
 
+                {error && (
+                    <div className="alert alert-danger" role="alert">
+                        {error}
+                    </div>
+                )}
+
                 {employees.length > 0 && (
                     <div className="table-responsive">
                         <table className="table table-striped table-bordered">
@@ -95,9 +108,9 @@ const EmployeeSearch = () => {
                                     <tr key={employee.id}>
                                         <td>{employee.id}</td>
                                         <td>{employee.employee_name}</td>
-                                        <td>{employee.employee_salary}</td>
+                                        <td>{formatCurrency(employee.employee_salary)}</td>
                                         <td>{employee.employee_age}</td>
-                                        <td>{employee.annualSalary}</td>
+                                        <td>{formatCurrency(employee.annualSalary)}</td>
                                     </tr>
                                 ))}
                             </tbody>
