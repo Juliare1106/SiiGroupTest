@@ -1,2 +1,2 @@
-# SiiGroupTest
-This is my test project for Java developer position at SiiGroup
+# TestSiiGroup
+This is my test project for Java Developer position

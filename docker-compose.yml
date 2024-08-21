@@ -1,0 +1,16 @@
+services:
+  react-app:
+    build:
+      context: ./employee-search
+    ports:
+      - "3000:80"
+    depends_on:
+      - spring-boot-app
+    environment:
+      - REACT_APP_API_URL=http://spring-boot-app:8080
+
+  spring-boot-app:
+    build:
+      context: ./Test
+    ports:
+      - "8080:8080"

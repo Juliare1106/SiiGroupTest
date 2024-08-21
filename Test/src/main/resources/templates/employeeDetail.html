@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Employee Detail</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Employee Detail</h1>
+        <div th:if="${employee != null}">
+            <p><strong>ID:</strong> <span th:text="${employee.id}"></span></p>
+            <p><strong>Name:</strong> <span th:text="${employee.employeeName}"></span></p>
+            <p><strong>Salary:</strong> <span th:text="${employee.employeeSalary}"></span></p>
+            <p><strong>Age:</strong> <span th:text="${employee.employeeAge}"></span></p>
+            <p><strong>Profile Image:</strong> <span th:text="${employee.profileImage}"></span></p>
+        </div>
+        <div th:if="${employee == null}">
+            <p>Employee not found.</p>
+        </div>
+        <a href="/employees" class="btn btn-secondary">Back to Employee List</a>
+    </div>
+</body>
+</html>
