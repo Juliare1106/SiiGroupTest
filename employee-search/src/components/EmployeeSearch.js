@@ -26,8 +26,9 @@ const EmployeeSearch = () => {
             })
             .catch(error => {
                 console.error("There was an error fetching the employee data!", error);
+                console.error(error.response.data.errorMessage);
                 setEmployees([]);
-                setError("There was an error fetching the employee data!"); 
+                setError(error.response.data.errorMessage); 
             });
     };
 
